@@ -5,7 +5,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const validateRequest = require('./helpers/check-token');
-const fetchContent = require('./lib/fetchContent');
+const article = require('./routes/article');
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -19,7 +19,7 @@ var requestLogger = function (req, res, next) {
 app.use(requestLogger);
 
 // these routes do *not* have s3o
-app.use('/static', express.static('static'));
+app.get('/__gtg', (req, res) => res.sendStatus(200));
 
 const TOKEN = process.env.TOKEN;
 if (!TOKEN) {
@@ -33,11 +33,10 @@ if (process.env.BYPASS_TOKEN !== 'true') {
 }
 
 
-app.get('/article/:uuid', (req, res) => {
-});
+app.use('/article', article);
 
 
-app.get('/', (req, res) => {
+app.use('/', (req, res) => {
   res.render('index');
 })
 
