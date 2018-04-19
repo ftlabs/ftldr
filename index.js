@@ -1,15 +1,17 @@
 const dotenv = require('dotenv').config({ silent: process.env.NODE_ENVIRONMENT === 'production' });
-const package = require('./package.json');
-const debug = require('debug')(`${package.name}:index`);
+const debug = require('debug')(`index`);
 const express = require('express');
 const path = require('path');
 const app = express();
 const validateRequest = require('./helpers/check-token');
 const article = require('./routes/article');
+const hbs = require('hbs');
 
 
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.resolve(__dirname + "/public")));
 app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials');
 
 var requestLogger = function (req, res, next) {
   debug("RECEIVED REQUEST:", req.method, req.url);
@@ -37,7 +39,7 @@ app.use('/article', article);
 
 
 app.use('/', (req, res) => {
-  res.render('index');
+  res.render('index', {template: 'home'});
 })
 
 app.use((err, req, res, next) => {

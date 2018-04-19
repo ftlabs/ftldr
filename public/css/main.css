@@ -1,0 +1,45 @@
+html {
+    /* Set a font family on the whole document */
+    font-family: Georgia, serif;
+  }
+
+body {
+  /* Remove space around the document */
+  margin: 0;
+  background-color: #FFF1E5;
+}
+
+a {
+	color: #27757B; /* teal 1 */
+}
+
+a:hover,
+button:hover {
+	color: #2BBBBf; /* teal 2 */
+}
+
+.tool-container {
+	margin: 50px auto;
+	max-width: 800px;
+}
+
+.tool-heading {
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	border-bottom: 2px groove;
+}
+
+.o-forms {
+	padding: 20px;
+	background: #E9DECF; /* pink tint 2 */
+	border: 1px solid #CEC6B9; /* pink tint 3 */
+  text-align: center;
+}
+
+.tool-heading {
+  text-align: center;
+}
+
+.tool-description {
+  text-align: center;
+}
