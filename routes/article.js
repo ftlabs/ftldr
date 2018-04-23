@@ -8,9 +8,9 @@ router.get('/:uuid', (req, res) => {
   const uuid = req.params.uuid;
   return fetchContent.getArticle(uuid)
   .then(content => {
-    const phrases = [];
+    const essencePhrases = [];
     const context = [];
-    phrases.push(
+    essencePhrases.push(
       {'type': 'Title', text: content.title},
       {'type': 'Standfirst', text: content.standfirst}
     );
@@ -22,8 +22,8 @@ router.get('/:uuid', (req, res) => {
 
     if( type ){
       if (type.prefLabel === 'News') {
-        const first = text.match(/(^.*?[a-z]{2,}[.!?])\s+\W*[A-Z]/)[1];
-        phrases.push({'type': 'First sentence', text: first});
+        const firstSentence = text.match(/(^.*?[a-z]{2,}[.!?])\s+\W*[A-Z]/)[1];
+        essencePhrases.push({'type': 'First sentence', text: firstSentence});
       }
       context.push({'type': 'GENRE', text: type.prefLabel });
     } else {
@@ -47,14 +47,14 @@ router.get('/:uuid', (req, res) => {
       })
 
       pullQuotes.map((pq, i) => {
-        phrases.push({'type': `PullQuote${i+1}`, text: pq });
+        essencePhrases.push({'type': `PullQuote${i+1}`, text: pq });
       })
     }
 
     return res.render('index', {
         content,
         template: 'article',
-        phrases,
+        essencePhrases,
         context,
         text,
         bodyXML: content.bodyXML,
