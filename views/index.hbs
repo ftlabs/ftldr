@@ -6,20 +6,37 @@
 	<title>{{{content.title}}}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<link rel="stylesheet" href="//www.ft.com/__origami/service/build/v2/bundles/css?modules=o-forms@^3.2.0,o-buttons@^4.4.1,o-fonts@^2.1.3,o-colors@^4.2.4">
+	<link rel="stylesheet" href="//www.ft.com/__origami/service/build/v2/bundles/css?modules=o-forms,o-buttons,o-fonts,o-colors,o-techdocs">
 	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-	<div class="tool-container">
-		<div class="tool-heading">
-			<h1>FTLDR</h1>
+	<header class="o-header-services" data-o-component="o-header">
+		<div class="o-header-services__top o-header-services__container">
+			<div class="o-header-services__ftlogo"></div>
+			<div class="o-header-services__title">
+				<h1 class="o-header-services__product-name"><a href="/">FTLabs</a></h1><span class="o-header-subrand__product-tagline">FTLDR</span>
+			</div>
 		</div>
-	</div>
-	<div class="tools-main">
-		{{> (lookup . 'template') }}
+	</header>
+
+	<div class="o-techdocs-hero">
+		<h2 class="o-techdocs-hero__title">
+extracting the essence of an article
+		</h2>
 	</div>
 
-	<script src="https://build.origami.ft.com/v2/bundles/js?modules=o-forms@^3.2.0,o-buttons@^4.4.1,o-fonts@^2.1.3,o-colors@^4.2.4"></script>
+	<div class="o-techdocs-container">
+		<div class="o-techdocs-layout">
+			<div class="o-techdocs-main">
+				<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css">
+				<div class="o-techdocs-content">
+					{{> (lookup . 'template') }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://build.origami.ft.com/v2/bundles/js?modules=o-forms,o-buttons,o-fonts,o-colors"></script>
 	<script src="/js/main.js"></script>
 
 </body>
