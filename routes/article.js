@@ -5,7 +5,8 @@ const debug = require('debug')('routes:article');
 const extractText = require('../utils/extract-text');
 
 router.get('/:uuid', (req, res) => {
-  return fetchContent.getArticle(req.params.uuid)
+  const uuid = req.params.uuid;
+  return fetchContent.getArticle(uuid)
   .then(content => {
     const phrases = [];
     phrases.push({'type': 'Title: ', text: content.title}, {'type': 'Standfirst: ', text: content.standfirst});
@@ -20,7 +21,14 @@ router.get('/:uuid', (req, res) => {
       phrases.push({'type': 'First sentence: ', text: first});
     }
 
-    return res.render('index', { content: content, template: 'article', phrases: phrases, text: text })
+    return res.render('index', {
+        content: content,
+        template: 'article',
+        phrases: phrases,
+        text: text,
+        uuid: uuid,
+        url: `https://www.ft.com/content/${uuid}`
+      })
   })
   .catch(err => {
     res.status(400).send( debug(err) ).end();
