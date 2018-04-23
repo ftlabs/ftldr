@@ -26,6 +26,7 @@ router.get('/:uuid', (req, res) => {
         template: 'article',
         phrases: phrases,
         text: text,
+        bodyXML: content.bodyXML,
         uuid: uuid,
         url: `https://www.ft.com/content/${uuid}`
       })
