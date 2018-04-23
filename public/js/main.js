@@ -1,6 +1,8 @@
 function init() {
   var form = document.querySelector(".o-forms");
-  form.addEventListener('submit', formSubmit)
+  if (form) {
+    form.addEventListener('submit', formSubmit)
+  }
 };
 
 function formSubmit(event) {
