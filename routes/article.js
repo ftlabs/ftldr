@@ -9,6 +9,7 @@ router.get('/:uuid', (req, res) => {
   return fetchContent.getArticle(uuid)
   .then(content => {
     const phrases = [];
+    const context = [];
     phrases.push(
       {'type': 'Title', text: content.title},
       {'type': 'Standfirst', text: content.standfirst}
@@ -19,18 +20,24 @@ router.get('/:uuid', (req, res) => {
     });
     const text = extractText(content.bodyXML);
 
-    if (type.prefLabel === 'News') {
-      const first = text.match(/(^.*?[a-z]{2,}[.!?])\s+\W*[A-Z]/)[1];
-      phrases.push({'type': 'First sentence', text: first});
+    if( type ){
+      if (type.prefLabel === 'News') {
+        const first = text.match(/(^.*?[a-z]{2,}[.!?])\s+\W*[A-Z]/)[1];
+        phrases.push({'type': 'First sentence', text: first});
+      }
+      context.push({'type': 'GENRE', text: type.prefLabel });
+    } else {
+      context.push({'type': 'GENRE', text: 'unknown' });
     }
 
     return res.render('index', {
-        content: content,
+        content,
         template: 'article',
-        phrases: phrases,
-        text: text,
+        phrases,
+        context,
+        text,
         bodyXML: content.bodyXML,
-        uuid: uuid,
+        uuid,
         url: `https://www.ft.com/content/${uuid}`
       })
   })

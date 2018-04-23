@@ -1,8 +1,11 @@
 <table>
   <tbody>
+    <tr>
+      <th colspan="2" style="text-align:center;">Essences</th>
+    </tr>
 {{#each phrases}}
     <tr>
-      <th><strong>{{type}}</strong></th><td>"{{text}}"</td>
+      <th><strong>{{type}}</strong></th><td>{{text}}</td>
     </tr>
 {{/each}}
   </tbody>
@@ -11,7 +14,23 @@
 <table>
   <tbody>
     <tr>
-      <th><strong>UUID</strong></th><td>"{{uuid}}"</td></tr>
+      <th colspan="2" style="text-align:center;">Context</th>
+    </tr>
+{{#each context}}
+    <tr>
+      <th><strong>{{type}}</strong></th><td>{{text}}</td>
+    </tr>
+{{/each}}
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <th colspan="2" style="text-align:center;">Details</th>
+    </tr>
+    <tr>
+      <th><strong>UUID</strong></th><td>{{uuid}}</td></tr>
       <th><strong>URL</strong></th><td><a href="{{url}}">{{url}}</a></td></tr>
   </tbody>
 </table>
