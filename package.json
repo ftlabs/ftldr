@@ -1,0 +1,29 @@
+{
+  "name": "ftldr",
+  "version": "1.0.0",
+  "description": "It outputs phrases that should instantly communicate the essence of an article",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ftlabs/ftldr.git"
+  },
+  "author": "K Downes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ftlabs/ftldr/issues"
+  },
+  "homepage": "https://github.com/ftlabs/ftldr#readme",
+  "dependencies": {
+    "@financial-times/s3o-middleware": "^2.0.6",
+    "cheerio": "^1.0.0-rc.2",
+    "debug": "^3.1.0",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "hbs": "^4.0.1",
+    "node-fetch": "^2.1.2"
+  }
+}

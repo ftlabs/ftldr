@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="core" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>{{{content.title}}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" href="//www.ft.com/__origami/service/build/v2/bundles/css?modules=o-forms@^3.2.0,o-buttons@^4.4.1,o-fonts@^2.1.3,o-colors@^4.2.4">
+	<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+	<div class="tool-container">
+		<div class="tool-heading">
+			<h1>FTLDR</h1>
+		</div>
+	</div>
+	<div class="tools-main">
+		{{> (lookup . 'template') }}
+	</div>
+
+	<script src="https://build.origami.ft.com/v2/bundles/js?modules=o-forms@^3.2.0,o-buttons@^4.4.1,o-fonts@^2.1.3,o-colors@^4.2.4"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+</html>
