@@ -30,6 +30,29 @@ router.get('/:uuid', (req, res) => {
       context.push({'type': 'GENRE', text: 'unknown' });
     }
 
+    const annotations = {}; // {predictate}{type}[label]
+    content.annotations.map( anno => {
+      const predicate = anno.predicate.split('/').pop();
+      const type      = anno.type;
+      const label     = anno.prefLabel;
+
+      if (! annotations.hasOwnProperty(predicate) ) {
+        annotations[predicate] = {};
+      }
+      if (! annotations[predicate].hasOwnProperty(type) ) {
+        annotations[predicate][type] = [];
+      }
+
+      annotations[predicate][type].push( label );
+    });
+
+    Object.keys(annotations).sort().map( predicate => {
+      Object.keys(annotations[predicate]).map( type => {
+        const labels = annotations[predicate][type].join(', ');
+        context.push( {'type' : `annotation:${predicate}:${type}`, 'text': labels } );
+      });
+    });
+
     // <pull-quote><pull-quote-text><p>Whatever we do as we return land to indigenous owners, the economy must not be harmed, agricultural production must not <br/>go down</p></pull-quote-text></pull-quote>
     const pqMatches = content.bodyXML.match(/<pull-quote>(.*?)<\/pull-quote>/g);
     const pullQuotes = [];
