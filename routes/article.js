@@ -30,6 +30,23 @@ router.get('/:uuid', (req, res) => {
       context.push({'type': 'GENRE', text: 'unknown' });
     }
 
+    // <pull-quote><pull-quote-text><p>Whatever we do as we return land to indigenous owners, the economy must not be harmed, agricultural production must not <br/>go down</p></pull-quote-text></pull-quote>
+    const pqMatches = content.bodyXML.match(/<pull-quote>(.*?)<\/pull-quote>/g);
+    const pullQuotes = [];
+    if (pqMatches) {
+      pqMatches.map( pqm => {
+        const pqtMatch = pqm.match(/<pull-quote-text>(.*)<\/pull-quote-text>/);
+        if (pqtMatch) {
+          const pqt = extractText(pqtMatch[1]);
+          pullQuotes.push( pqt );
+        }
+      })
+
+      pullQuotes.map((pq, i) => {
+        phrases.push({'type': `PullQuote${i+1}`, text: pq });
+      })
+    }
+
     return res.render('index', {
         content,
         template: 'article',
