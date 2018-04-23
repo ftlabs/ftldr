@@ -1,8 +1,16 @@
 <table>
   <tbody>
     <tr>
+      <td colspan="2" style="text-align:center;"><strong>Details</strong></td>
+    </tr>
+    <tr>
+      <th><strong>UUID</strong></th><td>{{uuid}}</td></tr>
+      <th><strong>URL</strong></th><td><a href="{{url}}">{{url}}</a></td>
+    </tr>
+    <tr>
       <td colspan="2" style="text-align:center;"><strong>Essences</strong></td>
     </tr>
+    <tr><td></td></tr>
 {{#each essencePhrases}}
     <tr>
       <th><strong>{{type}}</strong></th><td>{{text}}</td>
@@ -17,13 +25,6 @@
       <th><strong>{{type}}</strong></th><td>{{text}}</td>
     </tr>
 {{/each}}
-    <tr><td></td></tr>
-    <tr>
-      <td colspan="2" style="text-align:center;"><strong>Details</strong></td>
-    </tr>
-    <tr>
-      <th><strong>UUID</strong></th><td>{{uuid}}</td></tr>
-      <th><strong>URL</strong></th><td><a href="{{url}}">{{url}}</a></td></tr>
   </tbody>
 </table>
 
