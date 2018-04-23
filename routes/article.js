@@ -36,9 +36,13 @@ router.get('/:uuid', (req, res) => {
     if (pqMatches) {
       pqMatches.map( pqm => {
         const pqtMatch = pqm.match(/<pull-quote-text>(.*)<\/pull-quote-text>/);
+        const pqsMatch = pqm.match(/<pull-quote-source>(.*)<\/pull-quote-source>/);
         if (pqtMatch) {
-          const pqt = extractText(pqtMatch[1]);
-          pullQuotes.push( pqt );
+          var pqtext = extractText(pqtMatch[1]);
+          if (pqsMatch) {
+            pqtext = `${pqtext}<br>- ${pqsMatch[1]}`;
+          }
+          pullQuotes.push( pqtext );
         }
       })
 
