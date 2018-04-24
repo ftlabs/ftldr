@@ -60,6 +60,7 @@ app.use('/article/:uuid', (req, res, next) => {
   const uuid = req.params.uuid;
   article.extractData(uuid)
   .then( data => {
+    data['template'] = 'article';
     res.render('index', data);
   }).catch(e => {
       next(e);
