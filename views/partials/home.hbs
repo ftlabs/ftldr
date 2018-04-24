@@ -5,3 +5,10 @@
 	<input id='articleId' type="text" class="o-forms__text o-forms__text--valid" pattern="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}" placeholder="00000000-0000-0000-000000000000" required>
 		<button type='submit' class="o-buttons o-buttons--primary o-buttons--standout">Check uuid</button>
 </form>
+
+<h2>Example articles</h2>
+<ul>
+{{#each exampleArticles}}
+	<li><strong><a href="/article/{{uuid}}">{{uuid}}</a></strong> : {{text}}</li>
+{{/each}}
+</ul>
