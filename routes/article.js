@@ -63,27 +63,28 @@ router.get('/:uuid', (req, res) => {
       });
     });
 
-    // <pull-quote><pull-quote-text><p>Whatever we do as we return land to indigenous owners, the economy must not be harmed, agricultural production must not <br/>go down</p></pull-quote-text></pull-quote>
+    // Look for Pull Quotes
+    // <pull-quote><pull-quote-text><p>You are talking about labour abuse. You saw pictures of people kept in cages, which is completely unacceptable</p></pull-quote-text><pull-quote-source>Thiraphong Chansiri</pull-quote-source></pull-quote>
     const pqMatches = content.bodyXML.match(/<pull-quote>(.*?)<\/pull-quote>/g);
-    const pullQuotes = [];
     if (pqMatches) {
-      pqMatches.map( pqm => {
+      const pullQuotes = pqMatches.map( pqm => {
         const pqtMatch = pqm.match(/<pull-quote-text>(.*)<\/pull-quote-text>/);
         const pqsMatch = pqm.match(/<pull-quote-source>(.*)<\/pull-quote-source>/);
         if (pqtMatch) {
-          var pqtext = extractText(pqtMatch[1]);
+          var pq = { text: extractText(pqtMatch[1]) };
           if (pqsMatch) {
-            pqtext = `${pqtext}<br>- ${pqsMatch[1]}`;
+            pq['text2'] = `- ${pqsMatch[1]}`;
           }
-          pullQuotes.push( pqtext );
+          return pq;
         }
-      })
+      }).filter( t => t );
 
       pullQuotes.map((pq, i) => {
-        essencePhrases.push({'type': `PullQuote${i+1}`, text: pq });
-      })
+        pq['type'] = `PullQuote${i+1}`;
+        essencePhrases.push(pq);
+      });
     }
-
+    
     return res.render('index', {
         content,
         template: 'article',
