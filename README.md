@@ -1,6 +1,14 @@
 # FTLDR
 
-Outputs suggestions for phrases that could be used as a very short summary of an article. An experiment in anticipation of extreme summarisation. Currently suggests the title, standfirst and, for news articles, the first sentence.
+Outputs suggestions for phrases that could be used as a very short summary of an article. An experiment in anticipation of extreme summarisation.
+Currently suggests:
+- Title
+- Standfirst
+- Pull quotes
+- the first sentence for news articles
+- for articles tagged as about a person, any sentence mentioning that person.
+
+Use it at https://ftlabs-ftldr.herokuapp.com/.
 
 ## Installation
 
