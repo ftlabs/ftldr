@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const validateRequest = require('./helpers/check-token');
-const article = require('./routes/article');
+const article = require('./lib/article');
 const hbs = require('hbs');
 
 const exampleArticles = [
@@ -18,7 +18,7 @@ const exampleArticles = [
   },
   {
     uuid: '7ebe6812-4492-11e8-803a-295c97e6fd0b',
-    text: 'non-News, pull-quote'  
+    text: 'non-News, pull-quote'
   },
   {
     uuid: 'b6303556-46c1-11e8-8ee8-cae73aab7ccb',
@@ -56,7 +56,15 @@ if (process.env.BYPASS_TOKEN !== 'true') {
   app.use(validateRequest);
 }
 
-app.use('/article', article);
+app.use('/article/:uuid', (req, res, next) => {
+  const uuid = req.params.uuid;
+  article.extractData(uuid)
+  .then( data => {
+    res.render('index', data);
+  }).catch(e => {
+      next(e);
+  })
+});
 
 app.use('/', (req, res) => {
   res.render('index', { template: 'home', exampleArticles } );
