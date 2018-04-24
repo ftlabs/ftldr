@@ -7,6 +7,28 @@ const validateRequest = require('./helpers/check-token');
 const article = require('./routes/article');
 const hbs = require('hbs');
 
+const exampleArticles = [
+  {
+    uuid: 'a48fedf2-3da0-11e8-b7e0-52972418fec4',
+    text: 'non-News, about:PERSON'
+  },
+  {
+    uuid: '225ad6d0-3be3-11e8-b7e0-52972418fec4',
+    text: 'non-News, about:PERSON'
+  },
+  {
+    uuid: '7ebe6812-4492-11e8-803a-295c97e6fd0b',
+    text: 'non-News, pull-quote'  
+  },
+  {
+    uuid: 'b6303556-46c1-11e8-8ee8-cae73aab7ccb',
+    text: 'GENRE=News'
+  },
+  {
+    uuid: '769e57ae-463c-11e8-8ee8-cae73aab7ccb',
+    text: 'GENRE=News, pull-quote'
+  },
+];
 
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.resolve(__dirname + "/public")));
@@ -34,12 +56,10 @@ if (process.env.BYPASS_TOKEN !== 'true') {
   app.use(validateRequest);
 }
 
-
 app.use('/article', article);
 
-
 app.use('/', (req, res) => {
-  res.render('index', {template: 'home'});
+  res.render('index', { template: 'home', exampleArticles } );
 })
 
 app.use((err, req, res, next) => {
