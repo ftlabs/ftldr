@@ -46,6 +46,13 @@ router.get('/:uuid', (req, res) => {
       annotations[predicate][type].push( label );
     });
 
+    const splitText = text.match(/[^\.!\?]+[\.!\?]+/g);
+    if (annotations.about.PERSON) {
+      const person = annotations.about.PERSON[0];
+      const firstPersonMention = splitText.find(subString => subString.includes(person));
+      essencePhrases.push( { 'type': 'First mention of person', text: firstPersonMention });
+    }
+
     Object.keys(annotations).sort().map( predicate => {
       Object.keys(annotations[predicate]).map( type => {
         const labels = annotations[predicate][type].join(', ');
