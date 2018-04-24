@@ -67,6 +67,16 @@ app.use('/article/:uuid', (req, res, next) => {
   })
 });
 
+app.use('/articlejson/:uuid', (req, res, next) => {
+  const uuid = req.params.uuid;
+  article.extractData(uuid)
+  .then( data => {
+    res.json(data);
+  }).catch(e => {
+      next(e);
+  })
+});
+
 app.use('/', (req, res) => {
   res.render('index', { template: 'home', exampleArticles } );
 })
