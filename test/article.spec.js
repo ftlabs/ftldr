@@ -3,6 +3,7 @@ const chai = require('chai');
 const expect = require('chai').expect;
 const proxyquire = require('proxyquire');
 const newsFixture = require('./fixtures/newsResponse.json');
+const pullquoteFixture = require('./fixtures/pullquoteResponse.json');
 
 const sandbox = sinon.sandbox.create();
 
@@ -55,6 +56,25 @@ describe('article', () => {
 			})
 		});
 	});
+});
+
+context('content requested has pull quotes', () => {
+
+	beforeEach(() => {
+		capiStub.getArticle.returns(Promise.resolve(pullquoteFixture));
+	});
+
+	it('gets the pullquotes from the capi response', () => {
+		return subject.extractData(id)
+		.then(res => {
+			expect(res.essencePhrases[3]).to.include({
+				"text": 'There is no plan B. Without the US, there is no deal any more',
+    		"text2": '- European official',
+    		"type": 'PullQuote1'
+			});
+		});
+	});
+
 });
 
 });
