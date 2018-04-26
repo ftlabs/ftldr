@@ -48,6 +48,16 @@ describe('article', () => {
 		});
 	});
 
+	it('gets the first sentence for a news article', () => {
+		return subject.extractData(id)
+		.then(res => {
+			expect(res.essencePhrases[2]).to.include({
+				type: 'First sentence',
+    		text: 'Countries that fail to install enough electric-car charging points should not have the power to fine carmakers that miss emissions targets, the chief executive of PSA has said.'
+			});
+		});
+	});
+
 	it('gets each predicate and type from the annotations', () => {
 		return subject.extractData(id)
 		.then(res => {
