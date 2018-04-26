@@ -28,6 +28,14 @@ const exampleArticles = [
     uuid: '769e57ae-463c-11e8-8ee8-cae73aab7ccb',
     text: 'GENRE=News, pull-quote'
   },
+  {
+    uuid: '66f99e1c-2143-11e8-9efc-0cd3483b8b80',
+    text: 'GENRE=Opinion'
+  },
+  {
+    uuid: '879d06d6-485d-11e8-8ae9-4b5ddcca99b3',
+    text: 'GENRE=Opinion'
+  },
 ];
 
 app.set('views', path.join(__dirname, 'views'));
