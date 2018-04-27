@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "export CAPI_KEY=123 && mocha ./test --recursive"
+
   },
   "repository": {
     "type": "git",
@@ -32,5 +33,6 @@
     "nock": "^9.2.5",
     "proxyquire": "^2.0.1",
     "sinon": "^4.5.0"
+    "nodemon": "^1.17.3"
   }
 }

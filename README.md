@@ -6,7 +6,8 @@ Currently suggests:
 - Standfirst
 - Pull quotes
 - the first sentence for news articles
-- for articles tagged as about a person, any sentence mentioning that person.
+- for articles tagged as about a person, any sentence mentioning that person
+- for opinion articles, the last and penultimate sentences.
 
 Use it at https://ftlabs-ftldr.herokuapp.com/.
 
