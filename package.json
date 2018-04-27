@@ -4,8 +4,9 @@
   "description": "It outputs phrases that should instantly communicate the essence of an article",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "export CAPI_KEY=123 && mocha ./test --recursive"
+
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,11 @@
     "node-fetch": "^2.1.2"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1",
+    "nock": "^9.2.5",
+    "proxyquire": "^2.0.1",
+    "sinon": "^4.5.0"
     "nodemon": "^1.17.3"
   }
 }
