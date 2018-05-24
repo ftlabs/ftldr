@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node index.js",
     "test": "export CAPI_KEY=123 && mocha ./test --recursive"
-
   },
   "repository": {
     "type": "git",
