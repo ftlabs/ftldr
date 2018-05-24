@@ -14,9 +14,12 @@ Use it at https://ftlabs-ftldr.herokuapp.com/.
 ## Installation
 
 Configure the mandatory environment variables in a .env file. These are:
-* CAPI_KEY=
-* TOKEN= # for authorised access without S3O or IP range. Can be set to noddy value for development.
-* PORT= # auto set in Heroku, but needs specifying for development.
+
+```
+CAPI_KEY=
+TOKEN= # for authorised access without S3O or IP range. Can be set to noddy value for development.
+PORT= # auto set in Heroku, but needs specifying for development.
+```
 
 Run `npm install` to install the dependencies and then `npm start` to start the server.
 
